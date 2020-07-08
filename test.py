@@ -1,3 +1,3 @@
 from rplib import *
 
-print(arg(2))
+print(arg())

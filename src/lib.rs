@@ -6,16 +6,16 @@ use pyo3::types::*;
 create_exception!(rplib, SomeError, Exception);
 
 #[pyfunction]
-fn arg<'p>(py: Python<'p>, m: &'p PyAny) -> PyResult<&'p PyFloat> {
+fn arg<'p>(py: Python<'p>) {
     fne(py);
 
-    match m.downcast::<PyFloat>() {
+    /*match m.downcast::<PyFloat>() {
         Err(_) => Err({
             println!("aaaaa");
             SomeError::py_err("some_err")
         }),
         Ok(value) => Ok(value),
-    }
+    }*/
 }
 
 fn fne(py: Python) {
