@@ -6,7 +6,9 @@ use pyo3::types::*;
 create_exception!(rplib, SomeError, Exception);
 
 #[pyfunction]
-fn arg(m: &PyAny) -> PyResult<&PyFloat> {
+fn arg<'p>(py: Python<'p>, m: &'p PyAny) -> PyResult<&'p PyFloat> {
+    fne(py);
+
     match m.downcast::<PyFloat>() {
         Err(_) => Err({
             println!("aaaaa");
@@ -23,6 +25,5 @@ fn fne(py: Python) {
 #[pymodule]
 fn rplib(py: Python, module: &PyModule) -> PyResult<()> {
     module.add_wrapped(wrap_pyfunction!(arg))?;
-    fne(py);
     Ok(())
 }
